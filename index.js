@@ -16,7 +16,21 @@ const twitter = new Twitter({
 
 const controller = Botkit.slackbot({ debug: false });
 const bot = controller.spawn({ token: process.env.slackToken });
-bot.startRTM();
+function start_rtm() {
+    bot.startRTM((err,bot,payload) => {
+        if (err) {
+            console.log('Failed to start RTM')
+            return setTimeout(start_rtm, 60000);
+        }
+        console.log("RTM started!");
+    });
+};
+
+controller.on('rtm_close', (bot, err) => {
+    start_rtm();
+});
+
+start_rtm();
 
 const config = {
   // 時間のフォーマット
