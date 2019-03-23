@@ -35,7 +35,7 @@ start_rtm();
 const config = {
   // 時間のフォーマット
   dateFormat: "YYYY年MM月DD日",
-  defaultChannel: "#bot-test",
+  defaultChannel: "#maple-exp-tweet",
   // メイプル関連の文字
   mapleSelecter: "(maple|maplestory|メイプル|メイプルストーリー)",
   // ワールド
