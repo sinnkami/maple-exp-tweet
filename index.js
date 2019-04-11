@@ -92,6 +92,10 @@ function auto_tweet() {
         if( a.exp < b.exp ) return 1;
         return 0;
       });
+      for (var i = 0; i < docs.length; i++) {
+        if (!docs[i].show) { docs.splice(i--, 1); }
+      }
+
       console.log(docs);
       let message = `${yesterday}\n`;
       message += docs[0].text;
@@ -251,7 +255,6 @@ function tweet(messages, replyID = "") {
     })
   }
   const content = messages.shift();
-  if (!content.show) { return tweet(messages, replyID); }
   twitter.post("statuses/update", {
     status: content.text,
     in_reply_to_status_id: replyID,
